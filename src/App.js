@@ -1,7 +1,4 @@
-import './App.css';
-
 import React, { useState } from 'react';
-// 由于 antd 组件的默认文案是英文，所以需要修改为中文
 import 'antd/dist/antd.css';
 import './index.css';
 
@@ -40,7 +37,7 @@ const App = () => {
       race_800m: v.race_800m ?? null
     });
     if (typeof (result.performance.bmi) === "undefined") setBMI("Unknown");
-    else setBMI(result.performance.bmi + " (" + result.grade.aggregate + ")");
+    else setBMI(result.performance.bmi + " (" + result.grade.bmi + ")");
     if (result.aggregate.score === 0) setScore("Unknown");
     else setScore(result.aggregate.score + " (" + result.grade.aggregate + ")");
     console.log(result);
@@ -58,11 +55,12 @@ const App = () => {
       marginInline: 'auto'
     }}>
 
-
-      <Card type="inner" title="大学生体测成绩计算器 / Physical Test Score Calculator" extra={<a href="https://imwcr.cn/">More</a>} >
+      {/* extra={<a href="https://imwcr.cn/">More</a>}  */}
+      <Card type="inner" title="大学生体测成绩计算器 / Physical Test Score Calculator">
         <p>Thanks to Github project: Polaris-cn/physical-test-calculator</p>
         {/* <p>Thanks to Hosting provider: LGU.ICU</p> */}
         <p>All datas are processed offline. Feel free to use.</p>
+        <p>Bug fixed: the grade of BMI had been fixed.</p>
       </Card>
       <Card
         style={{
@@ -99,8 +97,8 @@ const App = () => {
             label="性别 / Gender"
           >
             <Radio.Group>
-              <Radio.Button value="male">男</Radio.Button>
-              <Radio.Button value="female">女</Radio.Button>
+              <Radio.Button value="male">男 / Male</Radio.Button>
+              <Radio.Button value="female">女 / Female</Radio.Button>
             </Radio.Group>
           </Form.Item>
 
@@ -110,10 +108,10 @@ const App = () => {
             label="年级 / Grade"
           >
             <Radio.Group>
-              <Radio.Button value="freshman">大一</Radio.Button>
-              <Radio.Button value="sophomore">大二</Radio.Button>
-              <Radio.Button value="junior">大三</Radio.Button>
-              <Radio.Button value="senior">大四</Radio.Button>
+              <Radio.Button value="freshman">大一 / Freshman</Radio.Button>
+              <Radio.Button value="sophomore">大二 / Sophomore</Radio.Button>
+              <Radio.Button value="junior">大三 / Junior</Radio.Button>
+              <Radio.Button value="senior">大四 / Senior</Radio.Button>
             </Radio.Group>
           </Form.Item>
 
